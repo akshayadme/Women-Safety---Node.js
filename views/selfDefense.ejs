@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Defense</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <%- include('header') %>
+
+    <div class="container my-5">
+        <h1>Learn Self-Defense for Yourself</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/watch?v=K5UO9zA3GK4&list=PLLALQuK1NDrigB-xTBLJV4vZwOXfxbPnM"
+                        allowfullscreen></iframe>
+                </div>
+                <p>Self-Defense Pressure Points | Self-Defense</p>
+            </div>
+            <div class="col-md-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/watch?v=7XI1uAdr_s4&list=PLLALQuK1NDrigB-xTBLJV4vZwOXfxbPnM&index=2"
+                        allowfullscreen></iframe>
+                </div>
+                <p>How to Escape a Back Choke Hold | Self-Defense</p>
+            </div>
+            <div class="col-md-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/watch?v=fji463dsZXo&list=PLLALQuK1NDrigB-xTBLJV4vZwOXfxbPnM&index=3"
+                        allowfullscreen></iframe>
+                </div>
+                <p>What to Do If Assailant Grabs Your Hair | Self-Defense</p>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/619cf0717e.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let addActive = document.getElementById('defense');
+            addActive.classList.add('active');
+        });
+    </script>
+
+</body>
+
+</html>

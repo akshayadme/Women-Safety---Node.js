@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <%- include('header') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 home my-5">
+                <div class="container">
+                    <form action="/location" method="POST">
+                        <div class="row">
+                            <input type="hidden" id="lat" class="form-control lat" name="latitude">
+                            <input type="hidden" id="lon" class="form-control lon" name="longitude">
+
+                            <div class="col-md-6 d-flex justify-content-center left">
+                                <button type="submit" name="submit" value="submit" class="btn btn-lg">
+                                    Send SOS
+                                </button>
+                            </div>
+
+                            <div class="col-md-6 right">
+                                <a type="button" class="btn btn-lg btn-block" href="/guardian">Add Guardian
+                                    Details</a>
+                                <a type="button" class="btn btn-lg btn-block" href="/guardian_update">Update Guardian
+                                    Details</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/619cf0717e.js" crossorigin="anonymous"></script>
+    <script>
+        const p = document.querySelector('p');
+
+        function onError() {
+            document.getElementById("lat").value = 'Unable to locate you'
+        }
+        function onSuccess(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            document.getElementById("lat").value = latitude;
+            document.getElementById("lon").value = longitude;
+        }
+
+        if (!navigator.geolocation) {
+            onError();
+        } else {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let addActive = document.getElementById('home');
+            addActive.classList.add('active');
+        });
+    </script>
+
+</body>
+
+</html>

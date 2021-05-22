@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <%- include('header') %>
+
+    <div class="container">
+        <div class="row justify-content-center my-5">
+            <div class="col-md-6 addDetail">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Add Guardian Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <form name="my-form" action="/guardian" method="post">
+                            <% if(errors!=''){ %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= errors %>
+                            </div>
+                            <% } %>
+                            <% if(success!=''){ %>
+                            <div class="alert alert-success" role="alert">
+                                <%= success %>
+                            </div>
+                            <% } %>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="staticEmail">Guardian 1</label>
+                                    <input type="text" id="staticEmail" class="form-control" placeholder="Enter Name"
+                                        name="parentName1">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="staticEmail">Phone Number</label>
+                                    <input type="text" id="staticEmail" class="form-control" placeholder="Enter Number"
+                                        name="parentMob1">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="staticEmail">Guardian 2</label>
+                                    <input type="text" id="staticEmail" class="form-control" placeholder="Enter Name"
+                                        name="parentName2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="staticEmail">Phone Number</label>
+                                    <input type="text" id="staticEmail" class="form-control" placeholder="Enter Number"
+                                        name="parentMob2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label for="staticEmail">Guardian Mail ID</label>
+                                    <input type="email" id="staticEmail" class="form-control" placeholder="Enter Email"
+                                        name="parentEmail">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" name="submit" value="submit" class="btn btn-block btn-primary">
+                                    ADD DETAIL
+                                </button>
+                            </div>
+                            <p class="mt-2"><a href="/guardian_update">Update Guardian Details</a> </p>
+                            <p class="mt-2"><a href="/home">Back to Home</a> </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/619cf0717e.js" crossorigin="anonymous"></script>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            let addActive = document.getElementById('home');
+            addActive.classList.add('active');
+        });
+    </script>
+
+</body>
+
+</html>

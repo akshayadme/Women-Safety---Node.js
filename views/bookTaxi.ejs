@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Taxi</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <%- include('header') %>
+
+    <div class="container">
+      <div class="row booking my-5">
+        <div class="col-md-6 my-5 left">
+          <h1>Book Taxi</h1>
+          <hr />
+          <form action="/booking" method="POST">
+            <% if(success!=''){ %>
+            <div class="alert alert-success" role="alert"><%= success %></div>
+            <% } %>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label"
+                >Your Location</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="staticEmail"
+                  name="currLoc"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label"
+                >Destination</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputPassword"
+                  name="destination"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputState">Choose your taxi preference</label>
+              <select id="inputState" class="form-control" name="cabtype">
+                <option selected>Choose...</option>
+                <option value="Auto">Auto</option>
+                <option value="Mini">Mini</option>
+                <option value="Micro">Micro</option>
+                <option value="Sedan">Sedan</option>
+              </select>
+            </div>
+            <div class="form-group col-12">
+              <button
+                type="submit"
+                name="submit"
+                value="submit"
+                class="btn btn-block"
+              >
+                Book Now
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6 right my-5">
+          <div class="map-responsive">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/619cf0717e.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let addActive = document.getElementById("booking");
+        addActive.classList.add("active");
+      });
+    </script>
+
+    <script>
+      let map, marker, options;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          map.setCenter(pos);
+          marker.setPosition(pos);
+
+          //get address on text box
+          let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`;
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data.results[0].formatted_address);
+              let address = data.results[0].formatted_address;
+              document.getElementById("add").value = adddress;
+            })
+            .catch((err) => console.warn(err.message));
+        });
+      } else {
+        console.log("Geolocation not supported");
+      }
+
+      function initMap() {
+        //map options
+        options = {
+          zoom: 14,
+          center: { lat: 0, lng: 0 },
+        };
+        //new map
+        map = new google.maps.Map(document.getElementById("map"), options);
+
+        //add marker
+        marker = new google.maps.Marker({
+          position: { lat: 0, lng: 0 },
+          map: map,
+        });
+
+        //listen for click on the map
+        // google.maps.Map.addEventListener(map , 'click', (event)=>{
+        // 	 marker = new google.maps.Marker({position:{lat:21.1938,lng: 81.3509} , map: map});
+        // });
+      }
+    </script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUOgO0ozsyHEW6taFOT3yRmt-xJ41dZCA&callback=initMap"
+    ></script>
+  </body>
+</html>
